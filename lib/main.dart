@@ -6,7 +6,7 @@ void main() {
 
 class AppLayout extends StatelessWidget {
   const AppLayout({super.key});
-  static const controller = [
+  static const controllers = [
     Text(
       'ac',
       style: TextStyle(
@@ -160,7 +160,6 @@ class AppLayout extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        
         body: SafeArea(
           child: Container(
             color: Colors.black,
@@ -172,10 +171,46 @@ class AppLayout extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: Container(
-                    color: const Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 102, 23, 23),
                     height: double.infinity,
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: const Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        '3x2',
+                        style: TextStyle(
+                          fontSize: 65.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 8,
+                  child: Container(
+                    color: Colors.black,
+                    padding: const EdgeInsets.all(10),
+                    child: GridView.count(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 20.0,
+                      mainAxisSpacing: 16.0,
+                      shrinkWrap: true,
+                      children: [
+                        ...List.generate(controllers.length, (index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            child: Center(child: controllers[index]),
+                          );
+                        }),
+                      ],
+                    ),
                   ),
                 ),
               ],
